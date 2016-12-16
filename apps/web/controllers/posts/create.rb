@@ -4,10 +4,21 @@ module Web::Controllers::Posts
 
     expose :post
 
-    def call(params)
-      @post = PostRepository.new.create(params[:post])
+    params do
+      required(:post).schema do
+        required(:title).filled(:str?)
+        required(:body).filled(:str?)
+      end
+    end
 
-      redirect_to '/posts'
+    def call(params)
+      if params.valid?
+        @post = PostRepository.new.create(params[:post])
+
+        redirect_to '/posts'
+      else
+        self.status = 422
+      end
     end
   end
 end
