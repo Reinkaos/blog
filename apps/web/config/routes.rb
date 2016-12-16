@@ -3,4 +3,6 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
+post '/posts', to: 'posts#create'
+get '/posts/new', to: 'posts#new'
 resources :posts
