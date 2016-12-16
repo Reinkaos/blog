@@ -18,4 +18,18 @@ RSpec.feature 'Add a post' do
     expect(current_path).to eq '/posts'
     expect(page).to have_content('Post One')
   end
+
+  it 'displays a list of errors when the params contains errors' do
+    visit '/posts/new'
+
+    within 'form#post-form' do
+      click_button 'Create Post'
+    end
+
+    expect(current_path).to eq '/posts'
+
+    expect(page).to have_content 'There was a problem with your submission'
+    expect(page).to have_content 'Title must be filled'
+    expect(page).to have_content 'Body must be filled'
+  end
 end

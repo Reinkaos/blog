@@ -15,7 +15,7 @@ module Web::Controllers::Posts
       if params.valid?
         @post = PostRepository.new.create(params[:post])
 
-        redirect_to '/posts'
+        redirect_to routes.posts_path
       else
         self.status = 422
       end
