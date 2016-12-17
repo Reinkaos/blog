@@ -1,5 +1,6 @@
 require 'hanami/helpers'
 require 'hanami/assets'
+require 'sass'
 
 module Web
   class Application < Hanami::Application
@@ -148,7 +149,8 @@ module Web
         # Specify sources for assets
         #
         sources << [
-          'assets'
+          'assets',
+          'vendor/assets' # app/web/vendor/assets
         ]
       end
 
