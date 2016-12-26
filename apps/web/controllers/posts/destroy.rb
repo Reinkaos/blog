@@ -5,6 +5,8 @@ module Web::Controllers::Posts
 
     def call(params)
       PostRepository.new.delete(params[:id])
+
+      redirect_to routes.posts_path
     end
   end
 end
